@@ -22,6 +22,7 @@ def color_thresh(img, rgb_thresh=(160, 160, 160)):
     # Return the binary image
     return color_select
 
+<<<<<<< HEAD
 def color_thresh_rock(img, rgb_thresh=(20, 0, 10)):
     # Create an array of zeros same xy size as img, but single channel
     color_select = np.zeros_like(img[:,:,0])
@@ -42,6 +43,14 @@ def rover_coords(binary_img):
     ypos, xpos = binary_img.nonzero()
     # Calculate pixel positions with reference to the rover position being at the
     # center bottom of the image.
+=======
+# Define a function to convert from image coords to rover coords
+def rover_coords(binary_img):
+    # Identify nonzero pixels
+    ypos, xpos = binary_img.nonzero()
+    # Calculate pixel positions with reference to the rover position being at the 
+    # center bottom of the image.  
+>>>>>>> d498d13300ba62e6205a09bd646151ee61812732
     x_pixel = -(ypos - binary_img.shape[0]).astype(np.float)
     y_pixel = -(xpos - binary_img.shape[1]/2 ).astype(np.float)
     return x_pixel, y_pixel
@@ -57,8 +66,9 @@ def to_polar_coords(x_pixel, y_pixel):
     angles = np.arctan2(y_pixel, x_pixel)
     return dist, angles
 
-# Define a function to apply a rotation to pixel positions
+# Define a function to map rover space pixels to world space
 def rotate_pix(xpix, ypix, yaw):
+<<<<<<< HEAD
 
     # Convert yaw to radians
     yaw_rad = yaw * np.pi / 180
@@ -74,6 +84,21 @@ def translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale):
     xpix_translated = (xpix_rot / scale) + xpos
     ypix_translated = (ypix_rot / scale) + ypos
     # Return the result
+=======
+    # Convert yaw to radians
+    yaw_rad = yaw * np.pi / 180
+    xpix_rotated = (xpix * np.cos(yaw_rad)) - (ypix * np.sin(yaw_rad))
+                            
+    ypix_rotated = (xpix * np.sin(yaw_rad)) + (ypix * np.cos(yaw_rad))
+    # Return the result  
+    return xpix_rotated, ypix_rotated
+
+def translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): 
+    # Apply a scaling and a translation
+    xpix_translated = (xpix_rot / scale) + xpos
+    ypix_translated = (ypix_rot / scale) + ypos
+    # Return the result  
+>>>>>>> d498d13300ba62e6205a09bd646151ee61812732
     return xpix_translated, ypix_translated
 
 
