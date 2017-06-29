@@ -59,7 +59,7 @@ Better Algorithm could be used in the decision and manoeuvring analysis. If I wo
 
 I would also not have the robot to go to pre-visited places where they have been mapped already.
 
-I would also improve the algorithm where the RoboBesh could see and go, but he is not moving physically (Stuck) to do a getting-out manoeuvre from where he is stuck.
+I would also improve the algorithm where the RoboBesh could see and go, when he is not moving physically (Stuck) to do a getting-out manoeuvre from where he is stuck.
 **Note: running the simulator with different choices of resolution and graphics quality may produce different results, particularly on different machines!  Make a note of your simulator settings (resolution and graphics quality set on launch) and frames per second (FPS output to terminal by `drive_rover.py`) in your writeup when you submit the project so your reviewer can reproduce your results.**
 
 1280 X 1024 on fast fps
