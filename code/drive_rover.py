@@ -38,6 +38,7 @@ ground_truth_3d = np.dstack((ground_truth*0, ground_truth*255, ground_truth*0)).
 # Define RoverState() class to retain rover state parameters
 class RoverState():
     def __init__(self):
+        self.name= 'RoboBesh'
         self.start_time = None # To record the start time of navigation
         self.total_time = None # To record total duration of naviagation
         self.img = None # Current camera image
@@ -116,15 +117,10 @@ def telemetry(sid, data):
             out_image_string1, out_image_string2 = create_output_images(Rover)
 
             # The action step!  Send commands to the rover!
-<<<<<<< HEAD
-            commands = (Rover.throttle, Rover.brake, Rover.steer)
-            send_control(commands, out_image_string1, out_image_string2)
-=======
- 
+
             # Don't send both of these, they both trigger the simulator
             # to send back new telemetry so we must only send one
             # back in respose to the current telemetry data.
->>>>>>> d498d13300ba62e6205a09bd646151ee61812732
 
             # If in a state where want to pickup a rock send pickup command
             if Rover.send_pickup and not Rover.picking_up:
@@ -177,13 +173,8 @@ def send_control(commands, image_string1, image_string2):
         "data",
         data,
         skip_sid=True)
-<<<<<<< HEAD
-
-# Define a function to send the "pickup" command
-=======
     eventlet.sleep(0)
-# Define a function to send the "pickup" command 
->>>>>>> d498d13300ba62e6205a09bd646151ee61812732
+# Define a function to send the "pickup" command
 def send_pickup():
     print("Picking up")
     pickup = {}
@@ -202,13 +193,8 @@ if __name__ == '__main__':
         help='Path to image folder. This is where the images from the run will be saved.'
     )
     args = parser.parse_args()
-<<<<<<< HEAD
 
-    os.system('rm -rf IMG_stream/*')
-=======
-    
     #os.system('rm -rf IMG_stream/*')
->>>>>>> d498d13300ba62e6205a09bd646151ee61812732
     if args.image_folder != '':
         print("Creating image folder at {}".format(args.image_folder))
         if not os.path.exists(args.image_folder):

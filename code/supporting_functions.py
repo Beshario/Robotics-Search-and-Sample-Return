@@ -8,7 +8,7 @@ import time
 # Define a function to convert telemetry strings to float independent of decimal convention
 def convert_to_float(string_to_convert):
       if ',' in string_to_convert:
-            float_value = np.float(string_to_convert.replace(',','.'))
+            float_value = np.float(string_to_convert.replace(',', '.'))
       else: 
             float_value = np.float(string_to_convert)
       return float_value
@@ -47,20 +47,13 @@ def update_rover(Rover, data):
       Rover.near_sample = np.int(data["near_sample"])
       # Picking up flag
       Rover.picking_up = np.int(data["picking_up"])
-<<<<<<< HEAD
-
-      print('speed =',Rover.vel, 'position =', Rover.pos, 'throttle =',
-      Rover.throttle, 'steer_angle =', Rover.steer, 'near_sample', Rover.near_sample,
-      'picking_up', data["picking_up"])
-=======
       # Update number of rocks collected
       Rover.samples_collected = Rover.samples_to_find - np.int(data["sample_count"])
->>>>>>> d498d13300ba62e6205a09bd646151ee61812732
 
-      print('speed =',Rover.vel, 'position =', Rover.pos, 'throttle =', 
-      Rover.throttle, 'steer_angle =', Rover.steer, 'near_sample:', Rover.near_sample, 
-      'picking_up:', data["picking_up"], 'sending pickup:', Rover.send_pickup, 
-      'total time:', Rover.total_time, 'samples remaining:', data["sample_count"], 
+      print('speed =',Rover.vel, 'position =', Rover.pos, 'throttle =',
+      Rover.throttle, 'steer_angle =', Rover.steer, 'near_sample:', Rover.near_sample,
+      'picking_up:', data["picking_up"], 'sending pickup:', Rover.send_pickup,
+      'total time:', Rover.total_time, 'samples remaining:', data["sample_count"],
       'samples collected:', Rover.samples_collected)
       # Get the current image from the center camera of the rover
       imgString = data["image"]
@@ -74,7 +67,7 @@ def update_rover(Rover, data):
 def create_output_images(Rover):
 
       # Create a scaled map for plotting and clean up obs/nav pixels a bit
-      if np.max(Rover.worldmap[:,:,2]) > 0: #blue channel
+      if np.max(Rover.worldmap[:,:,2]) > 0:
             nav_pix = Rover.worldmap[:,:,2] > 0
             navigable = Rover.worldmap[:,:,2] * (255 / np.mean(Rover.worldmap[nav_pix, 2]))
       else:
@@ -100,7 +93,7 @@ def create_output_images(Rover):
       # to confirm whether detections are real
       samples_located = 0
       if rock_world_pos[0].any():
-            
+
             rock_size = 2
             for idx in range(len(Rover.samples_pos[0])):
                   test_rock_x = Rover.samples_pos[0][idx]
@@ -111,13 +104,8 @@ def create_output_images(Rover):
                   # consider it a success and plot the location of the known
                   # sample on the map
                   if np.min(rock_sample_dists) < 3:
-<<<<<<< HEAD
-                        Rover.samples_found[idx] = 1
-                        map_add[test_rock_y-rock_size:test_rock_y+rock_size,
-=======
                         samples_located += 1
-                        map_add[test_rock_y-rock_size:test_rock_y+rock_size, 
->>>>>>> d498d13300ba62e6205a09bd646151ee61812732
+                        map_add[test_rock_y-rock_size:test_rock_y+rock_size,
                         test_rock_x-rock_size:test_rock_x+rock_size, :] = 255
 
       # Calculate some statistics on the map results
@@ -146,15 +134,11 @@ def create_output_images(Rover):
                   cv2.FONT_HERSHEY_COMPLEX, 0.4, (255, 255, 255), 1)
       cv2.putText(map_add,"Fidelity: "+str(fidelity)+'%', (0, 40),
                   cv2.FONT_HERSHEY_COMPLEX, 0.4, (255, 255, 255), 1)
-<<<<<<< HEAD
-      cv2.putText(map_add,"Rocks Found: "+str(np.sum(Rover.samples_found)), (0, 55),
-=======
-      cv2.putText(map_add,"Rocks", (0, 55), 
+      cv2.putText(map_add,"Rocks", (0, 55),
                   cv2.FONT_HERSHEY_COMPLEX, 0.4, (255, 255, 255), 1)
-      cv2.putText(map_add,"  Located: "+str(samples_located), (0, 70), 
+      cv2.putText(map_add,"  Located: "+str(samples_located), (0, 70),
                   cv2.FONT_HERSHEY_COMPLEX, 0.4, (255, 255, 255), 1)
-      cv2.putText(map_add,"  Collected: "+str(Rover.samples_collected), (0, 85), 
->>>>>>> d498d13300ba62e6205a09bd646151ee61812732
+      cv2.putText(map_add,"  Collected: "+str(Rover.samples_collected), (0, 85),
                   cv2.FONT_HERSHEY_COMPLEX, 0.4, (255, 255, 255), 1)
       # Convert map and vision image to base64 strings for sending to server
       pil_img = Image.fromarray(map_add.astype(np.uint8))
