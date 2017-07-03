@@ -5,11 +5,14 @@
 Beshari Project Write Up
 
 ### Notebook Analysis
-#### 1. Run the functions provided in the notebook on test images (first with the test data provided, next on data you have recorded). Add/modify functions to allow for color selection of obstacles and rock samples.
-Test Images
+#### 1. Run the functions provided in the notebook on test images (first with the test data provided, next on data you have recorded). Add/modify functions to allow for colour selection of obstacles and rock samples.
+
 
 ![sample pics](/Users/besh/miniconda3/RoboND-Python-StarterKit/RoboND-Rover-Project/calibration_images/example_grid1.jpg)
 ![sample pics2](/Users/besh/miniconda3/RoboND-Python-StarterKit/RoboND-Rover-Project/calibration_images/example_rock1.jpg)
+
+*Fig1: Test Images*
+
 
 A new function was added to the notebook:
 
@@ -28,12 +31,18 @@ def color_thresh_rock(img, rgb_thresh=(20, 0, 10)):
     # Return the binary image
     return color_select
 ~~~
+the function is used to identify rocks as shown below:
+the obstacle thresholded image is produced by the ==numpy.invert()== method.
 
 ![rock](/Users/besh/miniconda3/RoboND-Python-StarterKit/RoboND-Rover-Project/notebook_results/rock.jpg)
 
-#### 1. Populate the `process_image()` function with the appropriate analysis steps to map pixels identifying navigable terrain, obstacles and rock samples into a worldmap.  Run `process_image()` on your test data using the `moviepy` functions provided to create video output of your result. 
+*Fig2: a Rock image after applying the `color_thresh_rock` world-map*
+#### 1. Populate the `process_image()` function with the appropriate analysis steps to map pixels identifying navigable terrain, obstacles and rock samples into a world-map.  Run `process_image()` on your test data using the `moviepy` functions provided to create video output of your result. 
 
-![alt text](/Users/besh/miniconda3/RoboND-Python-StarterKit/RoboND-Rover-Project/notebook_results/general overview.png)
+![process](/Users/besh/miniconda3/RoboND-Python-StarterKit/RoboND-Rover-Project/notebook_results/general overview.png)
+
+*Fig3: The process of processing the image to steering to the right direction*
+
 
 and we got a movie result (Please see in the Output Folder named **test_mapping**
 
@@ -42,8 +51,30 @@ and we got a movie result (Please see in the Output Folder named **test_mapping*
 
 #### 1. Fill in the `perception_step()` (at the bottom of the `perception.py` script) and `decision_step()` (in `decision.py`) functions in the autonomous mapping scripts and an explanation is provided in the writeup of how and why these functions were modified as they were.
 
-Ther perception step has been populated and modified accrodingly, in short:
-a new function wass added, the same `color_thresh_rock`function mentioned above
+####perception.py
+
+the perception step has been populated and modified accordingly, the code is very close to the Jupyter Notebook part in the ==process_image(img)== function
+
+the only differences are receiving the image from `Rover.img`
+
+the image then is perspective-transformed using the ==perspect_transform(img, src, dst)== function
+
+This Produced an image from an upward view with the origin point(0,0) in both (x,y) axis in the upper left corner. as shown in the 2nd picture of Fig3
+
+
+the image is then thresholded, the light pixels of the image above a certain threshold is transformed to white and what is not is transformed black as shown 3rd image of Fig3
+
+the image is transformed to Robot Local coordinates and the average distance and average angles of all pixels (in a 2D binary array) is calculated in polar coordinates 
+
+The robot then is able to receive and make action accordingly.
+
+Along the process, the terrain, obstacle and rock binary images are produced and become the input of the RGB channels of the robot class, then shown on the left of the screen,
+
+The terrain, obstacle and rock binary images then are scaled down and transformed with the data of the Robot (Yaw and the rover's x,y coordinates) to world coordinates and compared with the original image
+
+####the Decision Step
+
+the Throttle quantity was changed to be explicitly numerical and higher than the default, the Robot therefore is able to navigate the environment faster. A name variable was added to the Robot class.
 
 **the data pipeline** goes as: 
 

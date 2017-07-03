@@ -20,7 +20,7 @@ def decision_step(Rover):
                 # and velocity is below max, then throttle
                 if Rover.vel < Rover.max_vel:
                     # Set throttle value to throttle setting
-                    Rover.throttle = 1
+                    Rover.throttle = 0.5
                 else: # Else coast
                     Rover.throttle = 0.3
                 # Set steering to average angle clipped to the range +/- 15
@@ -49,7 +49,7 @@ def decision_step(Rover):
                     # Release the brake to allow turning
                     Rover.brake = 0
                     # Turn range is +/- 15 degrees, when stopped the next line will induce 4-wheel turning
-                    Rover.steer = -30 # Could be more clever here about which way to turn
+                    Rover.steer = -45 # Could be more clever here about which way to turn
                 # If we're stopped but see sufficient navigable terrain in front then go!
                 if len(Rover.nav_angles) >= Rover.go_forward:
                     # Set throttle back to stored value
