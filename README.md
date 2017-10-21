@@ -1,15 +1,14 @@
 
 
 ---
-### Writeup / README
-Beshari Project Write Up
+###Beshari Project Write Up
 
 ### Notebook Analysis
 #### 1. Run the functions provided in the notebook on test images (first with the test data provided, next on data you have recorded). Add/modify functions to allow for colour selection of obstacles and rock samples.
 
 
-![sample pics](https://github.com/Beshario/Robproj1/tree/master/calibration_images/example_grid1.jpg)
-![sample pics2](https://github.com/Beshario/Robproj1/tree/master/calibration_images/example_rock1.jpg)
+![example_grid1](https://user-images.githubusercontent.com/6395647/31848397-ff5eaba2-b5ff-11e7-8a74-85fe79aaf319.jpg)
+![example_rock1](https://user-images.githubusercontent.com/6395647/31848399-ff774252-b5ff-11e7-9e4c-6ff3231e4a57.jpg)
 
 *Fig1: Test Images*
 
