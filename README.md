@@ -33,12 +33,12 @@ def color_thresh_rock(img, rgb_thresh=(20, 0, 10)):
 the function is used to identify rocks as shown below:
 the obstacle thresholded image is produced by the ==numpy.invert()== method.
 
-![rock](/Users/besh/miniconda3/RoboND-Python-StarterKit/RoboND-Rover-Project/notebook_results/rock.jpg)
+![rock](https://user-images.githubusercontent.com/6395647/31848404-0658ae58-b600-11e7-824a-99726c657a15.jpg)
 
 *Fig2: a Rock image after applying the `color_thresh_rock` world-map*
 #### 1. Populate the `process_image()` function with the appropriate analysis steps to map pixels identifying navigable terrain, obstacles and rock samples into a world-map.  Run `process_image()` on your test data using the `moviepy` functions provided to create video output of your result. 
 
-![process](/Users/besh/miniconda3/RoboND-Python-StarterKit/RoboND-Rover-Project/notebook_results/general overview.png)
+![general overview](https://user-images.githubusercontent.com/6395647/31848403-064b2a4e-b600-11e7-9257-7becd3699d98.png)
 
 *Fig3: The process of processing the image to steering to the right direction*
 
@@ -82,7 +82,7 @@ the Throttle quantity was changed to be explicitly numerical and higher than the
 #### 2. Launching in autonomous mode your rover can navigate and map autonomously.  Explain your results and how you might improve them in your writeup.  
 
 
-![final](/Users/besh/miniconda3/RoboND-Python-StarterKit/RoboND-Rover-Project/output.jpeg)
+![output](https://user-images.githubusercontent.com/6395647/31848405-0947b398-b600-11e7-8249-a08c6fabc56b.jpeg)
 The results were satisfactory: a lot could be done better, however, The robot (has a name in the code"RoboBesh") navigates autonomously with very little assistance manually and able to "see", map the world and locate rocks
 
 Better Algorithm could be used in the decision and manoeuvring analysis. If I would pursue this project further, I would write an algorithm that splits the picture in two, left and right and have the robot crawl the walls.
@@ -92,7 +92,7 @@ I would also not have the robot to go to pre-visited places where they have been
 I would also improve the algorithm where the RoboBesh could see and go, when he is not moving physically (Stuck) to do a getting-out manoeuvre from where he is stuck.
 **Note: running the simulator with different choices of resolution and graphics quality may produce different results, particularly on different machines!  Make a note of your simulator settings (resolution and graphics quality set on launch) and frames per second (FPS output to terminal by `drive_rover.py`) in your writeup when you submit the project so your reviewer can reproduce your results.**
 
-1280 X 1024 on fast fps
+Display Setting: 1280 X 1024 on fast fps
 
 
 
