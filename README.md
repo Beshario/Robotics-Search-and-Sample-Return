@@ -8,8 +8,8 @@ Beshari Project Write Up
 #### 1. Run the functions provided in the notebook on test images (first with the test data provided, next on data you have recorded). Add/modify functions to allow for colour selection of obstacles and rock samples.
 
 
-![sample pics](/Users/besh/miniconda3/RoboND-Python-StarterKit/RoboND-Rover-Project/calibration_images/example_grid1.jpg)
-![sample pics2](/Users/besh/miniconda3/RoboND-Python-StarterKit/RoboND-Rover-Project/calibration_images/example_rock1.jpg)
+![sample pics](https://github.com/Beshario/Robproj1/tree/master/calibration_images/example_grid1.jpg)
+![sample pics2](https://github.com/Beshario/Robproj1/tree/master/calibration_images/example_rock1.jpg)
 
 *Fig1: Test Images*
 
